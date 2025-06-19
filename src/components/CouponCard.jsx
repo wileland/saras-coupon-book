@@ -60,7 +60,10 @@ export default function CouponCard({
         </div>
 
         {/* Back */}
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 flex flex-col items-center justify-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-rose-200 text-center">
+        <div
+          className="absolute w-full h-full backface-hidden rotate-y-180 flex flex-col items-center justify-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-rose-200 text-center"
+          onClick={(e) => e.stopPropagation()}
+        >
           <p className="text-base font-handwriting text-gray-700 italic leading-snug">
             {caption}
           </p>

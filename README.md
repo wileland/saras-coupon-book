@@ -1,8 +1,3 @@
-Absolutely — here’s a polished, poetic, and developer-friendly `README.md` for **Sara’s Coupon Book**, written with love and clarity:
-
----
-
-````md
 # 💌 Sara's Coupon Book
 
 _A romantic, QR-powered React web app designed as a magical gift._
@@ -37,7 +32,6 @@ Sara's Coupon Book is a lovingly crafted React + Vite app that presents a whimsi
   npm run lint
   npm run build
   ```
-````
 
 ---
 
@@ -89,7 +83,7 @@ Every click is a little act of love.
 
 ## 📸 Example Screenshot
 
-![Example Coupon Card](/public/screenshots/coupon-preview.png)
+![Example Coupon Card](public/assets/the-heart-voucher.png)
 
 ---
 

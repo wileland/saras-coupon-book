@@ -23,14 +23,14 @@ export default function CouponGrid() {
         couponType={current.couponType}
         showInstruction={index > 0}
       />
-      {coupons.length > 1 && (
-        <button
-          onClick={nextCoupon}
-          className="fixed bottom-4 right-4 px-4 py-2 bg-black text-white rounded-full shadow-lg"
-        >
-          Next Coupon
-        </button>
-      )}
+        {coupons.length > 1 && (
+          <button
+            onClick={nextCoupon}
+            className="fixed bottom-4 right-4 z-50 bg-black/80 text-white px-4 py-2 rounded-full shadow-md"
+          >
+            Next Coupon
+          </button>
+        )}
     </div>
   );
 }
