@@ -1,7 +1,9 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+// ✅ Works with Tailwind v4+
+const tailwindcss = require('@tailwindcss/postcss');
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-})
+module.exports = {
+  plugins: [
+    tailwindcss(),
+    require('autoprefixer'),
+  ],
+}
