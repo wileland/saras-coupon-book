@@ -1,6 +1,6 @@
 // File: /src/components/Redeem.jsx
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import slugify from '../utils/slugify.js';
 import coupons from '../data/coupons';
@@ -13,6 +13,15 @@ export default function Redeem() {
   const nextSlug = coupons[(index + 1) % coupons.length]
     ? slugify(coupons[(index + 1) % coupons.length].title)
     : null;
+
+  useEffect(() => {
+    if (coupon) {
+      const used = JSON.parse(localStorage.getItem('usedCoupons') || '[]');
+      if (!used.includes(slug)) {
+        localStorage.setItem('usedCoupons', JSON.stringify([...used, slug]));
+      }
+    }
+  }, [coupon, slug]);
 
   if (!coupon) {
     return (

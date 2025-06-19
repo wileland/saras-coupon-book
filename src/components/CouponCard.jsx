@@ -18,6 +18,8 @@ export default function CouponCard({
   const [hintHidden, setHintHidden] = useState(false);
 
   const slug = slugify(title);
+  const usedCoupons = JSON.parse(localStorage.getItem('usedCoupons') || '[]');
+  const isUsed = usedCoupons.includes(slug);
 
   return (
     <Motion.div
@@ -34,6 +36,11 @@ export default function CouponCard({
       >
         {/* Front */}
         <div className="absolute w-full h-full backface-hidden flex flex-col items-center justify-center p-4 text-center bg-white/90 rounded-2xl shadow-md border border-pink-300">
+          {isUsed && (
+            <div className="absolute top-2 right-2 bg-amber-500 text-white px-2 py-1 text-xs rounded shadow">
+              Redeemed
+            </div>
+          )}
           {couponType && (
             <Motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -49,7 +56,9 @@ export default function CouponCard({
             alt={title}
             className="w-full h-full max-h-56 object-contain object-center mb-4 rounded-xl border border-pink-200 shadow pointer-events-none"
           />
-          <h2 className="text-xl font-display font-bold text-rose-700 drop-shadow">
+          <h2
+            className={`text-xl font-display font-bold drop-shadow ${isUsed ? 'text-emerald-400' : 'text-rose-700'}`}
+          >
             {title}
           </h2>
           {showInstruction && !flipped && !hintHidden && (
