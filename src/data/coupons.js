@@ -51,7 +51,7 @@ const coupons = [
   },
   {
     title: "HRV",
-    image: "/assets/hrv.png",
+    image: "/assets/HRV.png",
     caption: "A joyride through time, memory, or Taco Bell.",
     qrCode: "/qr/hrv.png",
   },
