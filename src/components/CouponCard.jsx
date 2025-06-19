@@ -17,12 +17,11 @@ export default function CouponCard({ title, image, caption, qrCode }) {
     <motion.div
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
-      className="w-full max-w-sm h-[430px] perspective"
+      className="w-full max-w-sm h-[430px] perspective overflow-hidden rounded-2xl"
     >
       <motion.div
         onClick={() => setFlipped(!flipped)}
-        className={`relative w-full h-full transition-transform duration-700 ${flipped ? 'rotate-y-180' : ''}`}
-        style={{ transformStyle: 'preserve-3d' }}
+        className={`relative w-full h-full cursor-pointer transition-transform duration-700 preserve-3d ${flipped ? 'rotate-y-180' : ''}`}
       >
         {/* Front */}
         <div className="absolute w-full h-full backface-hidden flex flex-col items-center justify-center p-4 text-center bg-white/90 rounded-2xl shadow-md border border-pink-300">
@@ -47,7 +46,7 @@ export default function CouponCard({ title, image, caption, qrCode }) {
               <img
                 src={qrCode}
                 alt={`QR Code for ${title}`}
-                className="w-20 h-20 hover:scale-110 transition-transform duration-300"
+                className="w-20 h-20 object-contain hover:scale-110 transition-transform duration-300"
               />
             </Link>
           )}
