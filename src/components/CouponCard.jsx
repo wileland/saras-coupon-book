@@ -1,7 +1,5 @@
-// File: /src/components/CouponCard.jsx
-
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function CouponCard({ title, image, caption, qrCode }) {
