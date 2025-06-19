@@ -20,6 +20,7 @@ export default function CouponGrid() {
         image={current.image}
         caption={current.caption}
         qrCode={current.qrCode}
+        couponType={current.couponType}
         showInstruction={index > 0}
       />
       {coupons.length > 1 && (
