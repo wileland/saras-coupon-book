@@ -46,3 +46,4 @@ CouponCard.propTypes = {
   caption: PropTypes.string,
   qrCode: PropTypes.string,
 };
+
