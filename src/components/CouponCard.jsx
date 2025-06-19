@@ -6,7 +6,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import slugify from '../utils/slugify.js';
 
-export default function CouponCard({ title, image, caption, qrCode, showInstruction }) {
+export default function CouponCard({
+  title,
+  image,
+  caption,
+  qrCode,
+  couponType,
+  showInstruction,
+}) {
   const [flipped, setFlipped] = useState(false);
   const [hintHidden, setHintHidden] = useState(false);
 
@@ -27,6 +34,16 @@ export default function CouponCard({ title, image, caption, qrCode, showInstruct
       >
         {/* Front */}
         <div className="absolute w-full h-full backface-hidden flex flex-col items-center justify-center p-4 text-center bg-white/90 rounded-2xl shadow-md border border-pink-300">
+          {couponType && (
+            <Motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-rose-500 via-pink-600 to-rose-500 text-white font-display font-bold text-sm px-4 py-1 rounded-full shadow-lg backdrop-blur-sm z-20"
+            >
+              This coupon is valid for: {couponType}
+            </Motion.div>
+          )}
           <img
             src={image}
             alt={title}
@@ -72,5 +89,6 @@ CouponCard.propTypes = {
   image: PropTypes.string.isRequired,
   caption: PropTypes.string,
   qrCode: PropTypes.string,
+  couponType: PropTypes.string,
   showInstruction: PropTypes.bool,
 };
