@@ -20,13 +20,14 @@ export default function CouponGrid() {
         image={current.image}
         caption={current.caption}
         qrCode={current.qrCode}
+        showInstruction={index > 0}
       />
       {coupons.length > 1 && (
         <button
           onClick={nextCoupon}
-          className="mt-6 px-4 py-2 bg-rose-600 text-white rounded shadow"
+          className="fixed bottom-4 right-4 px-4 py-2 bg-black text-white rounded-full shadow-lg"
         >
-          Next
+          Next Coupon
         </button>
       )}
     </div>
