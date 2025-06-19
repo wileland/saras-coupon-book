@@ -1,3 +1,11 @@
+/* File: /src/index.css */
+
+/* Tailwind CSS Core */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Your existing Vite default styles */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
