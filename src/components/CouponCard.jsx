@@ -39,7 +39,7 @@ export default function CouponCard({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-rose-500 via-pink-600 to-rose-500 text-white font-display font-bold text-sm px-4 py-1 rounded-full shadow-lg backdrop-blur-sm z-20"
+              className="pointer-events-none absolute top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full px-6 py-2 shadow-lg backdrop-blur-sm z-30"
             >
               This coupon is valid for: {couponType}
             </Motion.div>
