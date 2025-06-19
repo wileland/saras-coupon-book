@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import slugify from '../utils/slugify.js';
 
-export default function CouponCard({ title, image, caption, qrCode }) {
+export default function CouponCard({ title, image, caption, qrCode, showInstruction }) {
   const [flipped, setFlipped] = useState(false);
+  const [hintHidden, setHintHidden] = useState(false);
 
   const slug = slugify(title);
 
@@ -18,7 +19,10 @@ export default function CouponCard({ title, image, caption, qrCode }) {
       className="relative w-full max-w-sm h-[430px] perspective rounded-2xl pb-8 z-10"
     >
       <Motion.div
-        onClick={() => setFlipped(!flipped)}
+        onClick={() => {
+          setFlipped(!flipped);
+          setHintHidden(true);
+        }}
         className={`relative w-full h-full cursor-pointer transition-transform duration-700 preserve-3d ${flipped ? 'rotate-y-180' : ''}`}
       >
         {/* Front */}
@@ -31,6 +35,11 @@ export default function CouponCard({ title, image, caption, qrCode }) {
           <h2 className="text-xl font-display font-bold text-rose-700 drop-shadow">
             {title}
           </h2>
+          {showInstruction && !flipped && !hintHidden && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white text-sm px-3 py-1 rounded pointer-events-none">
+              Tap image for QR code
+            </div>
+          )}
         </div>
 
         {/* Back */}
@@ -40,7 +49,11 @@ export default function CouponCard({ title, image, caption, qrCode }) {
           </p>
 
           {qrCode && (
-            <Link to={`/redeem/${slug}`} className="mt-5 block">
+            <Link
+              to={`/redeem/${slug}`}
+              className="mt-5 block"
+              onClick={(e) => e.stopPropagation()}
+            >
               <img
                 src={qrCode}
                 alt={`QR Code for ${title}`}
@@ -59,4 +72,5 @@ CouponCard.propTypes = {
   image: PropTypes.string.isRequired,
   caption: PropTypes.string,
   qrCode: PropTypes.string,
+  showInstruction: PropTypes.bool,
 };
