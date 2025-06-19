@@ -26,7 +26,7 @@ export default function CouponGrid() {
       {coupons.length > 1 && (
         <button
           onClick={nextCoupon}
-          className="fixed bottom-4 right-4 z-50 px-4 py-2 bg-black text-white rounded-full shadow-lg"
+          className="fixed bottom-4 right-4 z-50 bg-black/80 text-white px-4 py-2 rounded-full shadow-md"
         >
           Next Coupon
         </button>
