@@ -4,20 +4,18 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import slugify from '../utils/slugify.js';
 
 export default function CouponCard({ title, image, caption, qrCode }) {
   const [flipped, setFlipped] = useState(false);
 
-  const slug = title
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^\w-]/g, '');
+  const slug = slugify(title);
 
   return (
     <motion.div
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
-      className="w-full max-w-sm h-[430px] perspective overflow-hidden rounded-2xl"
+      className="w-full max-w-sm h-[430px] perspective rounded-2xl"
     >
       <motion.div
         onClick={() => setFlipped(!flipped)}
@@ -28,7 +26,7 @@ export default function CouponCard({ title, image, caption, qrCode }) {
           <img
             src={image}
             alt={title}
-            className="w-32 h-32 rounded-xl object-cover mb-4 border border-pink-200 shadow"
+            className="w-32 h-32 rounded-xl object-contain object-center mb-4 border border-pink-200 shadow"
           />
           <h2 className="text-xl font-display font-bold text-rose-700 drop-shadow">
             {title}

@@ -1,9 +1,6 @@
-// ✅ Works with Tailwind v4+
-const tailwindcss = require('@tailwindcss/postcss');
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-module.exports = {
-  plugins: [
-    tailwindcss(),
-    require('autoprefixer'),
-  ],
-}
+export default defineConfig({
+  plugins: [react()],
+});
