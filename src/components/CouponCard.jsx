@@ -1,38 +1,55 @@
+// File: /src/components/CouponCard.jsx
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default function CouponCard({ title, image, caption, qrCode }) {
   const [flipped, setFlipped] = useState(false);
 
+  const slug = title
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+
   return (
     <motion.div
-      onClick={() => setFlipped(!flipped)}
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.96 }}
-      className="cursor-pointer w-64 h-96 rounded-2xl bg-[url('/assets/bg/parchment-texture.jpg')] bg-cover shadow-lg border-[1px] border-amber-300 p-3 transition-transform duration-500"
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      className="w-full max-w-sm h-[430px] perspective"
     >
       <motion.div
-        initial={false}
-        animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.9 }}
-        className="relative w-full h-full preserve-3d"
+        onClick={() => setFlipped(!flipped)}
+        className={`relative w-full h-full transition-transform duration-700 ${flipped ? 'rotate-y-180' : ''}`}
+        style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Front */}
-        <div className="absolute inset-0 backface-hidden flex flex-col items-center justify-center p-4 text-center">
-          <img src={image} alt={title} className="w-32 h-32 rounded-xl object-cover mb-4 border border-pink-200 shadow" />
+        <div className="absolute w-full h-full backface-hidden flex flex-col items-center justify-center p-4 text-center bg-white/90 rounded-2xl shadow-md border border-pink-300">
+          <img
+            src={image}
+            alt={title}
+            className="w-32 h-32 rounded-xl object-cover mb-4 border border-pink-200 shadow"
+          />
           <h2 className="text-xl font-display font-bold text-rose-700 drop-shadow">
             {title}
           </h2>
         </div>
 
         {/* Back */}
-        <div className="absolute inset-0 backface-hidden rotate-y-180 flex flex-col items-center justify-center p-6 bg-white/80 backdrop-blur-sm rounded-xl border border-rose-200 text-center">
+        <div className="absolute w-full h-full backface-hidden rotate-y-180 flex flex-col items-center justify-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-rose-200 text-center">
           <p className="text-base font-handwriting text-gray-700 italic leading-snug">
             {caption}
           </p>
+
           {qrCode && (
-            <img src={qrCode} alt="QR Code" className="mt-5 w-20 h-20" />
+            <Link to={`/redeem/${slug}`} className="mt-5 block">
+              <img
+                src={qrCode}
+                alt={`QR Code for ${title}`}
+                className="w-20 h-20 hover:scale-110 transition-transform duration-300"
+              />
+            </Link>
           )}
         </div>
       </motion.div>
@@ -46,4 +63,3 @@ CouponCard.propTypes = {
   caption: PropTypes.string,
   qrCode: PropTypes.string,
 };
-
