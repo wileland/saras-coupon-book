@@ -12,10 +12,8 @@ export default function CouponCard({
   caption,
   qrCode,
   couponType,
-  showInstruction,
 }) {
   const [flipped, setFlipped] = useState(false);
-  const [hintHidden, setHintHidden] = useState(false);
 
   const slug = slugify(title);
   const usedCoupons = JSON.parse(localStorage.getItem('usedCoupons') || '[]');
@@ -30,7 +28,6 @@ export default function CouponCard({
       <Motion.div
         onClick={() => {
           setFlipped(!flipped);
-          setHintHidden(true);
         }}
         className={`relative w-full h-full cursor-pointer transition-transform duration-700 preserve-3d ${flipped ? 'rotate-y-180' : ''}`}
       >
@@ -41,31 +38,26 @@ export default function CouponCard({
               Redeemed
             </div>
           )}
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full max-h-56 object-contain object-center mb-4 rounded-xl border border-pink-200 shadow-2xl brightness-110 contrast-125 saturate-150 pointer-events-none"
+          />
           {couponType && (
             <Motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="pointer-events-none absolute top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full px-6 py-2 shadow-lg backdrop-blur-sm z-30"
+              className="pointer-events-none mt-1 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full px-4 py-1 shadow-md backdrop-blur-sm"
             >
               This coupon is valid for: {couponType}
             </Motion.div>
           )}
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full max-h-56 object-contain object-center mb-4 rounded-xl border border-pink-200 shadow pointer-events-none"
-          />
           <h2
             className={`text-xl font-display font-bold drop-shadow ${isUsed ? 'text-emerald-400' : 'text-rose-700'}`}
           >
             {title}
           </h2>
-          {showInstruction && !flipped && !hintHidden && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white text-sm px-3 py-1 rounded pointer-events-none">
-              Tap image for QR code
-            </div>
-          )}
         </div>
 
         {/* Back */}
@@ -99,5 +91,4 @@ CouponCard.propTypes = {
   caption: PropTypes.string,
   qrCode: PropTypes.string,
   couponType: PropTypes.string,
-  showInstruction: PropTypes.bool,
-};
+}; 
